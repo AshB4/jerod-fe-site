@@ -1,10 +1,14 @@
 /** @format */
 
+import React from "react";
 import "./App.css";
-import Navbar from "./components/Navbar.js";
-import Footer from "./components/Footer.js"
-import { NavyButton, SecondaryButton, PrimaryButton } from "./components/buttons/Buttons.js";
-
+import Navbar from "./components/nav/Navbar.js";
+import Footer from "./components/footers/Footer.js";
+import {
+	NavyButton,
+	SecondaryButton,
+	PrimaryButton,
+} from "./components/button/Buttons.js";
 
 function App() {
 	return (
