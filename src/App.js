@@ -1,11 +1,10 @@
 /** @format */
 
 import "./App.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import PrimaryButton from "./components/buttons/PrimaryButton";
-import SecondaryButton from "./components/buttons/SecondaryButton";
-import NavyButton from "./components/buttons/NavyButton";
+import Navbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js"
+import { NavyButton, SecondaryButton, PrimaryButton } from "./components/buttons/Buttons.js";
+
 
 function App() {
 	return (
