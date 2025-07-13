@@ -58,6 +58,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/* ====== Card ====== */
+.card-wrapper {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
 
 /* ====== Utility ====== */
 .text-center {
