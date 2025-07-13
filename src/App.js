@@ -10,8 +10,13 @@ import {
 	SecondaryButton,
 	PrimaryButton,
 } from "./components/button/Buttons.js";
+import DividerWave from "./components/bg/DividerWave.js";
 import HealthQuestionsForm from "./components/forms/HealthQuestionsForm.js";
 import PatientDemographicsForm from "./components/forms/PatientDemographicsForm.js";
+
+import CaregiverIcon from "./assets/icons/Caregiver.png";
+import HeartHandsIcon from "./assets/icons/HeartHands.png";
+import LocationIcon from "./assets/icons/Location.png";
 
 
 function App() {
@@ -38,20 +43,36 @@ function App() {
 						</Card>
 					</div>
 
-					<div className="card-grid">
-						<Card title="For Caregivers" subtitle="Tips, advice..." />
-						<Card title="For Loved Ones" subtitle="Engaging activities..." />
-						<Card title="Local Resources" subtitle="Find services nearby" />
-					</div>
+					<section className="card-section">
+						<DividerWave />
+						<div className="card-grid">
+							<Card
+								title="For Caregivers"
+								subtitle="Tips, advice..."
+								icon={CaregiverIcon}
+							/>
+							<Card
+								title="For Loved Ones"
+								subtitle="Engaging activities..."
+								icon={HeartHandsIcon}
+							/>
+							<Card
+								title="Local Resources"
+								subtitle="Find services nearby"
+								icon={LocationIcon}
+							/>
+						</div>
+					</section>
 
 					<div className="form-section">
-					<div className="form-container">
-						<PatientDemographicsForm />
+						<div className="form-container">
+							<h2>Get Started</h2>
+							<PatientDemographicsForm />
 						</div>
 						<div className="form-container">
-						<HealthQuestionsForm />
+							<HealthQuestionsForm />
 						</div>
-						</div>
+					</div>
 				</section>
 			</main>
 
