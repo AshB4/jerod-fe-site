@@ -1,83 +1,54 @@
 /** @format */
 
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/nav/Navbar.js";
-import Footer from "./components/footers/Footer.js";
-import Card from "./components/cards/Card.js";
-import {
-	NavyButton,
-	SecondaryButton,
-	PrimaryButton,
-} from "./components/button/Buttons.js";
-import DividerWave from "./components/bg/DividerWave.js";
-import HealthQuestionsForm from "./components/forms/HealthQuestionsForm.js";
-import PatientDemographicsForm from "./components/forms/PatientDemographicsForm.js";
 
-import CaregiverIcon from "./assets/icons/Caregiver.png";
-import HeartHandsIcon from "./assets/icons/HeartHands.png";
-import LocationIcon from "./assets/icons/Location.png";
+// Shared Layout Components
+import Navbar from "./components/nav/Navbar";
+import Footer from "./components/footers/Footer";
 
+// Pages
+import Home from "./pages/homepg/home";
+import About from "./pages/aboutpg/about";
+import Contact from "./pages/contactpg/contact";
+import Resources from "./pages/resourcepg/resources";
+
+// TODO: Add these when they're created:
+import IntakeForm from "./pages/intakepg/intakeForm";
+import PatientReport from "./pages/reportspg/patientReport";
+import Dashboard from "./pages/dashpg/dashboard";
+// import LabOrder from "./pages/labOrder";
+// import ScreeningOrder from "./pages/screeningOrder";
+
+// import Profile from "./pages/profile";
+// import NotFound from "./pages/notFound";
 
 function App() {
 	return (
-		<div className="App">
-			<Navbar />
+		<Router>
+			<div className="App">
+				<Navbar />
 
-			<main className="main-content">
-				<section className="hero-section">
-					<h1>Supporting Alzheimer's Care & Families</h1>
-					<p>
-						We're here to guide, support, and empower caregivers and loved ones
-						every step of the way.
-					</p>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/intake-form" element={<IntakeForm />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="/resources" element={<Resources />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/report" element={<PatientReport />} />
+					<Route path="/dashboard" element={<Dashboard />} />
 
-					<div className="button-row">
-						<PrimaryButton>Learn More</PrimaryButton>
-						<SecondaryButton>Resources</SecondaryButton>
-						<NavyButton>Start Now</NavyButton>
-					</div>
-					<div className="card-wrapper">
-						<Card title="Welcome" subtitle="Your intake is scheduled">
-							<button className="btn">View Details</button>
-						</Card>
-					</div>
+					{/* 
+					<Route path="/lab-order" element={<LabOrder />} />
+					<Route path="/screening-order" element={<ScreeningOrder />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="*" element={<NotFound />} /> */}
+				</Routes>
 
-					<section className="card-section">
-						<div className="card-grid">
-							<Card
-								title="For Caregivers"
-								subtitle="Tips, advice..."
-								icon={CaregiverIcon}
-							/>
-							<Card
-								title="For Loved Ones"
-								subtitle="Engaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the other"
-								icon={HeartHandsIcon}
-							/>
-							<Card
-								title="Local Resources"
-								subtitle="Find services nearby"
-								icon={LocationIcon}
-							/>
-						</div>
-						<DividerWave />
-					</section>
-
-					<div className="form-section">
-						<div className="form-container">
-							<h2>Get Started</h2>
-							<PatientDemographicsForm />
-						</div>
-						<div className="form-container">
-							<HealthQuestionsForm />
-						</div>
-					</div>
-				</section>
-			</main>
-
-			<Footer />
-		</div>
+				<Footer />
+			</div>
+		</Router>
 	);
 }
 
