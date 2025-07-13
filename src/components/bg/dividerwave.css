@@ -29,19 +29,30 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 35rem;
+    height: 25rem;
     width: 100%;
    
     z-index: 3;
   }
 
   .divider-wave-outer {
-    position: relative;
-    height: 34rem;
+    position: abosolute;
+    height: 2rem;
     width: 100%;
     overflow: hidden;
     z-index: 0;
   }
+
+  .wave-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 6rem;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
+    z-index: 1;
+  }
+  
 
   .divider-wave-container svg path {
     transition: d 0.3s ease, stroke-width 0.3s ease;

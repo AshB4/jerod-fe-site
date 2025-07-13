@@ -44,7 +44,6 @@ function App() {
 					</div>
 
 					<section className="card-section">
-						<DividerWave />
 						<div className="card-grid">
 							<Card
 								title="For Caregivers"
@@ -53,7 +52,7 @@ function App() {
 							/>
 							<Card
 								title="For Loved Ones"
-								subtitle="Engaging activities..."
+								subtitle="Engaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the otherEngaging activities...stuff this and that and the other"
 								icon={HeartHandsIcon}
 							/>
 							<Card
@@ -62,6 +61,7 @@ function App() {
 								icon={LocationIcon}
 							/>
 						</div>
+						<DividerWave />
 					</section>
 
 					<div className="form-section">

@@ -62,8 +62,11 @@
 
   .card-section {
     position: relative;
-    z-index: 999; /* Needed for stacking context */
+    z-index: 999;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
+  
 
   .card-icon {
     width: 48px;

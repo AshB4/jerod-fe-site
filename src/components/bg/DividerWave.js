@@ -30,9 +30,9 @@ const DividerWave = () => {
 						d="M0,180 C400,80 1040,360 1440,200 L1440,320 L0,320 Z"
 					/>
 				</svg>
-
-				<div className="wave-fade"></div>
+				<div className="wave-fade">
 			</div>
+		</div>
 		</div>
 	);
 };
