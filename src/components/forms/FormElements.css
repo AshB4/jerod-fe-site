@@ -79,10 +79,10 @@
   }
 
   /* Radio Questions */
-  .checkbox-option {
+  .radio-option {
     font-size: 14px;
     color: #2D3748;
-    margin-bottom: 8px;
+    margin: 4px;
     display: flex;
     align-items: center;
   }
@@ -96,7 +96,7 @@
   .checkbox-option {
     font-size: 14px;
     color: #2D3748;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
   }
