@@ -2,13 +2,13 @@
 
 import "./navbar.css";
 import "../../App.css";
-// import logo from "../assets/logo.png";
+import logo from "../../assets/BMCLogo.webp";
 
 function Navbar() {
 	return (
 		<nav className="navbar" aria-label="Main navigation">
 			<div className="navbar-left">
-				{/* <img src={logo} alt="BetterMindCare logo" className="logo" /> */}
+				<img src={logo} alt="BetterMindCare logo" className="logo" />
 				<span className="brand">bettermindcare</span>
 			</div>
 			<ul className="navbar-right">
