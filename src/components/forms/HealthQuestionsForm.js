@@ -5,8 +5,16 @@ import QuestionsCheckbox from "./QuestionsCheckbox";
 import RadioQuestions from "./RadioQuestions";
 import TextInput from "../inputs/InputText.js";
 import "./FormElements.css";
+import { generatePatientReport } from "../../utils/reportGenerator.js";
+import { useNavigate } from "react-router-dom";
+
+
 
 function HealthQuestionsForm({ gender }) {
+
+
+	const navigate = useNavigate();
+
 	const [formData, setFormData] = useState({
 		diabetes: "",
 		cholesterol: "",
@@ -42,8 +50,8 @@ function HealthQuestionsForm({ gender }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Health Form Data:", formData);
-		// Trigger recommendation logic or API call
+		const report = generatePatientReport(formData, gender);
+		navigate("/report", { state: { report } });
 	};
 
 	return (

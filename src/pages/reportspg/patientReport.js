@@ -1,9 +1,66 @@
 /** @format */
 
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import jsPDF from "jspdf";
 import "./patientReport.css";
 
 function PatientReport() {
+	const location = useLocation();
+	const navigate = useNavigate();
+	const report = location.state?.report;
+
+	if (!report) {
+		return (
+			<div className="patient-report-page">
+				<h2>No Report Found</h2>
+				<p>Please complete the intake form first.</p>
+				<button className="btn" onClick={() => navigate("/intake-form")}>
+					Go to Intake Form
+				</button>
+			</div>
+		);
+	}
+
+	const handleDownload = () => {
+		const doc = new jsPDF();
+		doc.setFontSize(14);
+		doc.text("BetterMindCare – Patient Report", 10, 10);
+		let y = 20;
+
+		doc.text("Generated on: July 13, 2025", 10, y);
+		y += 10;
+
+		doc.setFontSize(12);
+		doc.text("Recommendations:", 10, y);
+		y += 8;
+
+		report.report.forEach((item) => {
+			doc.setFont(undefined, "bold");
+			doc.text(`• ${item.title}`, 10, y);
+			y += 6;
+			doc.setFont(undefined, "normal");
+			const wrapped = doc.splitTextToSize(item.body, 180);
+			doc.text(wrapped, 10, y);
+			y += wrapped.length * 6;
+		});
+
+		if (report.labRecommendations.length) {
+			y += 10;
+			doc.setFontSize(12);
+			doc.setFont(undefined, "bold");
+			doc.text("Recommended Labs:", 10, y);
+			y += 8;
+			report.labRecommendations.forEach((lab) => {
+				doc.setFont(undefined, "normal");
+				doc.text(`• ${lab}`, 10, y);
+				y += 6;
+			});
+		}
+
+		doc.save("BetterMindCare_Report.pdf");
+	};
+
 	return (
 		<div className="patient-report-page">
 			<h1>Patient Report</h1>
@@ -13,40 +70,39 @@ function PatientReport() {
 				<h2>Summary</h2>
 				<p>
 					This report provides a personalized overview based on your intake
-					data, lab results, and optional screening tests. The recommendations
-					are evidence-based and designed to support brain health, lifestyle
-					improvements, and prevention strategies.
+					data. The recommendations are evidence-based and designed to support
+					brain health, lifestyle improvements, and prevention strategies.
 				</p>
 			</section>
 
 			<section className="report-section">
-				<h2>Lab Results</h2>
-				<ul>
-					<li>
-						<strong>Homocysteine:</strong> 11.3 µmol/L — Slightly elevated. Aim
-						for &lt; 10 µmol/L.
-					</li>
-					<li>
-						<strong>Vitamin B12:</strong> 420 pg/mL — Borderline. Consider
-						food/supplement support.
-					</li>
-					<li>
-						<strong>CRP (inflammation):</strong> 1.2 mg/dL — Moderate. Target
-						&lt; 0.9 mg/dL.
-					</li>
-				</ul>
+				<h2>Lab Recommendations</h2>
+				{report.labRecommendations.length ? (
+					<ul>
+						{[...new Set(report.labRecommendations)].map((lab, index) => (
+							<li key={index}>
+								<strong>{lab}:</strong> Recommended for follow-up testing.
+							</li>
+						))}
+					</ul>
+				) : (
+					<p>No lab recommendations were triggered.</p>
+				)}
 			</section>
 
 			<section className="report-section">
-				<h2>Recommendations</h2>
-				<ul>
-					<li>✅ Add B-complex (with methylated B12 and Folate)</li>
-					<li>✅ Reduce processed sugar to help lower CRP and insulin</li>
-					<li>
-						✅ Get 15+ min of outdoor sunlight exposure per day for natural
-						vitamin D
-					</li>
-				</ul>
+				<h2>Personalized Recommendations</h2>
+				{report.report.length ? (
+					<ul>
+						{report.report.map((item, index) => (
+							<li key={index}>
+								<strong>{item.title}:</strong> {item.body}
+							</li>
+						))}
+					</ul>
+				) : (
+					<p>No personalized recommendations found.</p>
+				)}
 			</section>
 
 			<section className="report-section">
@@ -59,7 +115,9 @@ function PatientReport() {
 			</section>
 
 			<div className="report-actions">
-				<button className="btn">Download PDF</button>
+				<button className="btn" onClick={handleDownload}>
+					Download PDF
+				</button>
 			</div>
 		</div>
 	);
